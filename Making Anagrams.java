@@ -1,23 +1,29 @@
 class Solution {
     public int minSteps(String s, String t) {
         
-    int[] c = new int[26];
-    s1 = s1.toLowerCase();
-    s2 = s2.toLowerCase();
+        // Frequency array to store count of each character in s and t
+        int[] c = new int[26];
 
-    for (int i = 0; i < s1.length(); i++) {
-      c[s1.charAt(i) - 'a']++;
-    }
+        // Convert both strings to lowercase to ensure case-insensitive comparison
+        s = s.toLowerCase();
+        t = t.toLowerCase();
 
-    for (int i = 0; i < s2.length(); i++) {
-      c[s2.charAt(i) - 'a']--;
-    }
+        // Count frequency of each character in the first string
+        for (int i = 0; i < s.length(); i++) {
+            c[s.charAt(i) - 'a']++;
+        }
 
-    int total = 0;
-    for (int i : c) {
-      total += Math.abs(i);
-    }
+        // Subtract frequency of characters found in the second string
+        for (int i = 0; i < t.length(); i++) {
+            c[t.charAt(i) - 'a']--;
+        }
 
-    return total;
+        // Calculate the total steps required (sum of absolute differences)
+        int total = 0;
+        for (int i : c) {
+            total += Math.abs(i); // Count characters that are different
+        }
+
+        return total;
     }
 }
